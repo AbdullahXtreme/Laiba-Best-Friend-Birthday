@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Laiba - Happy Birthday!</title>
+    <style>
+        :root { --primary: #ff007f; --bg: #0a0a12; --text: #ffffff; }
+        body { background-color: var(--bg); color: var(--text); font-family: 'Segoe UI', Arial; text-align: center; margin: 0; transition: 0.5s; overflow-x: hidden; }
+        
+        /* Floating Photos */
+        .floating-img { position: fixed; width: 70px; height: 70px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary); animation: floatUp 8s linear infinite; z-index: -1; opacity: 0.5; }
+        @keyframes floatUp { from { transform: translateY(110vh); } to { transform: translateY(-20vh); } }
+
+        /* Main Gallery */
+        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; padding: 20px; max-width: 900px; margin: 0 auto; }
+        .gallery img { width: 100%; border-radius: 15px; border: 2px solid rgba(255,255,255,0.1); }
+
+        /* Letter Box */
+        .letter { background: white; color: #333; padding: 30px; border-radius: 5px; max-width: 600px; margin: 20px auto; display: none; text-align: left; line-height: 1.6; border-left: 8px solid var(--primary); }
+
+        .heart-btn { font-size: 60px; background: none; border: none; cursor: pointer; animation: pulse 1.5s infinite; margin: 20px; }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.2); } 100% { transform: scale(1); } }
+
+        .theme-dots { position: fixed; top: 10px; right: 10px; }
+        .dot { height: 20px; width: 20px; border-radius: 50%; display: inline-block; cursor: pointer; margin: 5px; border: 1px solid #fff; }
+    </style>
+</head>
+<body>
+
+    <div class="theme-dots">
+        <div class="dot" style="background:#ff007f" onclick="setTheme('#ff007f','#0a0a12')"></div>
+        <div class="dot" style="background:#ffd700" onclick="setTheme('#ffd700','#2e2b00')"></div>
+        <div class="dot" style="background:#00ced1" onclick="setTheme('#00ced1','#002626')"></div>
+    </div>
+
+    <h1 id="title">Happy Birthday, Laiba! ✨</h1>
+    
+    <div class="gallery">
+        <img src="https://i.imgur.com/TMkqiuH.jpeg" onerror="this.src='https://via.placeholder.com/300?text=Laiba+Photo+1'">
+        <img src="https://i.imgur.com/MTH9gd6.jpeg" onerror="this.src='https://via.placeholder.com/300?text=Laiba+Photo+2'">
+        <img src="https://i.imgur.com/7DFLFwB.jpeg" onerror="this.src='https://via.placeholder.com/300?text=Laiba+Photo+3'">
+    </div>
+
+    <button class="heart-btn" onclick="openSurprise()">❤️</button>
+    <p>Tap the heart for a surprise!</p>
+
+    <div id="letter" class="letter">
+        <h3>Dear Laiba,</h3>
+        <p>I wanted to create something unique for you because you deserve the world. You are an inspiration and a great friend. I hope your day is as amazing as you are!</p>
+        <p>Stay shining and keep being the incredible person you are.</p>
+      <p> Happy Birthday world superb girl Laiba</p>
+      
+        <p><strong>- AbdullahXtreme</strong></p>
+    </div>
+
+    <div id="float-zone"></div>
+
+    <audio id="song" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        function setTheme(p, b) {
+            document.documentElement.style.setProperty('--primary', p);
+            document.documentElement.style.setProperty('--bg', b);
+        }
+
+        function openSurprise() {
+            document.getElementById('letter').style.display = 'block';
+            document.getElementById('song').play();
+            document.getElementById('title').innerText = "You are Special! 💖";
+            spawnConfetti();
+        }
+
+        function spawnConfetti() {
+            for(let i=0; i<30; i++) {
+                const c = document.createElement('div');
+                c.style.position = 'fixed';
+                c.style.left = Math.random() * 100 + 'vw';
+                c.style.top = '-20px';
+                c.innerText = '💖🎂';
+                c.style.fontSize = '24px';
+                c.style.transition = 'transform 3s linear';
+                document.body.appendChild(c);
+                setTimeout(() => { c.style.transform = `translateY(110vh)`; }, 10);
+                setTimeout(() => c.remove(), 3000);
+            }
+        }
+    </script>
+</body>
+</html>
